@@ -2,6 +2,8 @@
 .idea/
 .vscode/
 
+storage/
+
 # 字节编译/优化/DLL文件
 __pycache__
 *.py[cod]
@@ -14,6 +16,7 @@ api/tmp/
 api/venv/
 api/test/storage/
 api/.env
+api/storage/
 
 # UI相关
 ui/node_modules/

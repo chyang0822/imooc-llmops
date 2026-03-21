@@ -8,7 +8,7 @@
 import logging
 import os
 
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask_cors import CORS
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -72,6 +72,13 @@ class Http(Flask):
 
         # 7.注册应用路由
         router.register_router(self)
+
+        # 8.注册本地上传文件的静态文件路由（COS未配置时使用）
+        storage_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "storage", "uploads")
+
+        @self.route("/static/uploads/<path:filename>")
+        def serve_uploaded_file(filename):
+            return send_from_directory(os.path.abspath(storage_path), filename)
 
     def _register_error_handler(self, error: Exception):
         # 1.日志记录异常信息
