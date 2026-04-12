@@ -131,7 +131,10 @@ class AppConfigService(BaseService):
                 )
                 if not builtin_tool:
                     continue
-                tools.append(builtin_tool(**tool["tool"]["params"]))
+                try:
+                    tools.append(builtin_tool(**tool["tool"]["params"]))
+                except Exception:
+                    raise
             else:
                 # 4.API工具，首先根据id找到ApiTool记录，然后创建示例
                 api_tool = self.get(ApiTool, tool["tool"]["id"])

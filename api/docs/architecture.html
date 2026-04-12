@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLMOps API 项目架构图</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+    :root {
+      --bg:#0d1117; --bg2:#161b22; --bg3:#21262d; --border:#30363d;
+      --text:#e6edf3; --muted:#8b949e;
+      --blue:#58a6ff; --green:#3fb950; --yellow:#d29922;
+      --orange:#f78166; --purple:#bc8cff; --pink:#f778ba;
+      --cyan:#39d353; --teal:#56d364;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:36px 20px 80px}
+    h1{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:700;color:var(--blue);letter-spacing:.04em;margin-bottom:4px}
+    .sub{font-size:.82rem;color:var(--muted);margin-bottom:36px;font-family:'JetBrains Mono',monospace}
+    .arch{display:grid;gap:14px;max-width:1160px;margin:0 auto}
+    .row{display:grid;gap:14px}
+    .r1{grid-template-columns:1fr}
+    .r2{grid-template-columns:1fr 1fr}
+    .r3{grid-template-columns:1fr 1fr 1fr}
+    .r4{grid-template-columns:1fr 1fr 1fr 1fr}
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;border-top:2.5px solid var(--cc,var(--border));transition:box-shadow .2s}
+    .card:hover{box-shadow:0 0 18px color-mix(in srgb,var(--cc,var(--blue)) 18%,transparent)}
+    .ctitle{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--cc,var(--blue));margin-bottom:10px;display:flex;align-items:center;gap:7px}
+    .ctitle::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cc,var(--blue));flex-shrink:0}
+    .tags{display:flex;flex-wrap:wrap;gap:5px}
+    .tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;padding:2px 7px;border-radius:4px;background:var(--bg3);border:1px solid var(--border);color:var(--muted);white-space:nowrap}
+    .tag.h{border-color:var(--cc,var(--blue));color:var(--cc,var(--blue));background:color-mix(in srgb,var(--cc,var(--blue)) 10%,var(--bg3))}
+    .grp{margin-top:9px}
+    .grp-title{font-size:.62rem;color:var(--muted);margin-bottom:4px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em}
+    .arrow{text-align:center;color:var(--muted);font-size:1.3rem;margin:-2px 0}
+    .llabel{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;padding-left:2px}
+    .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;padding-top:18px;border-top:1px solid var(--border);justify-content:center}
+    .li{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--muted)}
+    .ld{width:10px;height:10px;border-radius:50%}
+    @media(max-width:800px){.r2,.r3,.r4{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div style="max-width:1160px;margin:0 auto">
+  <h1>&#x2B21; LLMOps API &mdash; 项目架构图</h1>
+  <div class="sub">// imooc-llmops / api &nbsp;&middot;&nbsp; Flask + LangChain + LangGraph + Celery</div>
+  <div class="arch">
+
+    <!-- LAYER 0: 入口 -->
+    <div class="llabel">&#9658; Layer 0 &middot; 入口层 Entry</div>
+    <div class="row r3">
+      <div class="card" style="--cc:var(--blue)">
+        <div class="ctitle">app/http/app.py</div>
+        <div class="tags">
+          <span class="tag h">Flask App 工厂</span>
+          <span class="tag">create_app()</span>
+          <span class="tag">Injector 容器</span>
+          <span class="tag">扩展注册</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--blue)">
+        <div class="ctitle">app/http/module.py</div>
+        <div class="tags">
+          <span class="tag h">依赖注入模块</span>
+          <span class="tag">Service 绑定</span>
+          <span class="tag">Manager 单例</span>
+          <span class="tag">config 注入</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--blue)">
+        <div class="ctitle">internal/server/http.py</div>
+        <div class="tags">
+          <span class="tag h">HTTP 服务器</span>
+          <span class="tag">gevent WSGI</span>
+          <span class="tag">端口绑定</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 1: 扩展 & 中间件 -->
+    <div class="llabel">&#9658; Layer 1 &middot; 扩展 &amp; 中间件 Extension / Middleware</div>
+    <div class="row r2">
+      <div class="card" style="--cc:var(--cyan)">
+        <div class="ctitle">internal/extension</div>
+        <div class="tags">
+          <span class="tag h">SQLAlchemy (PostgreSQL)</span>
+          <span class="tag h">Redis</span>
+          <span class="tag h">Weaviate 向量库</span>
+          <span class="tag h">Celery 异步队列</span>
+          <span class="tag">Flask-Login</span>
+          <span class="tag">Flask-Migrate</span>
+          <span class="tag">Logging</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--cyan)">
+        <div class="ctitle">middleware &amp; pkg/</div>
+        <div class="tags">
+          <span class="tag h">JWT 鉴权</span>
+          <span class="tag h">OAuth (GitHub)</span>
+          <span class="tag">Paginator 分页</span>
+          <span class="tag">Password 工具</span>
+          <span class="tag">统一 Response</span>
+          <span class="tag">HTTP Code 枚举</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 2: 路由 & Handler -->
+    <div class="llabel">&#9658; Layer 2 &middot; 路由 &amp; Handler Router / Handler</div>
+    <div class="card" style="--cc:var(--yellow)">
+      <div class="ctitle">internal/router/router.py &rarr; internal/handler/</div>
+      <div class="row r4" style="margin-top:8px">
+        <div>
+          <div class="grp-title">应用 &amp; 对话</div>
+          <div class="tags">
+            <span class="tag h">AppHandler</span>
+            <span class="tag h">ConversationHandler</span>
+            <span class="tag">WebAppHandler</span>
+            <span class="tag">OpenAPIHandler</span>
+            <span class="tag">AssistantAgentHandler</span>
+          </div>
+        </div>
+        <div>
+          <div class="grp-title">工具 &amp; 工作流</div>
+          <div class="tags">
+            <span class="tag h">BuiltinToolHandler</span>
+            <span class="tag h">ApiToolHandler</span>
+            <span class="tag h">WorkflowHandler</span>
+            <span class="tag">BuiltinAppHandler</span>
+          </div>
+        </div>
+        <div>
+          <div class="grp-title">数据集 &amp; 文件</div>
+          <div class="tags">
+            <span class="tag h">DatasetHandler</span>
+            <span class="tag h">DocumentHandler</span>
+            <span class="tag">SegmentHandler</span>
+            <span class="tag">UploadFileHandler</span>
+          </div>
+        </div>
+        <div>
+          <div class="grp-title">账号 &amp; 平台</div>
+          <div class="tags">
+            <span class="tag h">AccountHandler</span>
+            <span class="tag h">AuthHandler</span>
+            <span class="tag">OAuthHandler</span>
+            <span class="tag">PlatformHandler</span>
+            <span class="tag">AIHandler</span>
+            <span class="tag">AudioHandler</span>
+            <span class="tag">ApiKeyHandler</span>
+            <span class="tag">WechatHandler</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 3: Service -->
+    <div class="llabel">&#9658; Layer 3 &middot; 业务服务层 Service</div>
+    <div class="row r3">
+      <div class="card" style="--cc:var(--purple)">
+        <div class="ctitle">应用 &amp; 对话</div>
+        <div class="tags">
+          <span class="tag h">AppService</span>
+          <span class="tag h">AppConfigService</span>
+          <span class="tag h">ConversationService</span>
+          <span class="tag">WebAppService</span>
+          <span class="tag">OpenAPIService</span>
+          <span class="tag">AssistantAgentService</span>
+          <span class="tag">AIService</span>
+          <span class="tag">AudioService</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--purple)">
+        <div class="ctitle">工具 &amp; 工作流</div>
+        <div class="tags">
+          <span class="tag h">BuiltinToolService</span>
+          <span class="tag h">ApiToolService</span>
+          <span class="tag h">WorkflowService</span>
+          <span class="tag">BuiltinAppService</span>
+          <span class="tag">LanguageModelService</span>
+          <span class="tag">PlatformService</span>
+          <span class="tag">AnalysisService</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--purple)">
+        <div class="ctitle">数据集 &amp; 账号</div>
+        <div class="tags">
+          <span class="tag h">DatasetService</span>
+          <span class="tag h">DocumentService</span>
+          <span class="tag h">IndexingService</span>
+          <span class="tag">SegmentService</span>
+          <span class="tag">RetrievalService</span>
+          <span class="tag">EmbeddingsService</span>
+          <span class="tag">VectorDatabaseService</span>
+          <span class="tag">AccountService</span>
+          <span class="tag">JwtService</span>
+          <span class="tag">OAuthService</span>
+          <span class="tag">UploadFileService</span>
+          <span class="tag">CosService</span>
+          <span class="tag">FaissService</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 4: Core -->
+    <div class="llabel">&#9658; Layer 4 &middot; 核心能力层 Core</div>
+    <div class="row r2">
+      <div class="card" style="--cc:var(--orange)">
+        <div class="ctitle">Agent &amp; LLM &amp; Memory</div>
+        <div class="grp">
+          <div class="grp-title">Agent (LangGraph)</div>
+          <div class="tags">
+            <span class="tag h">FunctionCallAgent</span>
+            <span class="tag h">ReACTAgent</span>
+            <span class="tag">AgentQueueManager</span>
+            <span class="tag">AgentConfig / AgentState</span>
+          </div>
+        </div>
+        <div class="grp">
+          <div class="grp-title">Language Model Manager</div>
+          <div class="tags">
+            <span class="tag h">LanguageModelManager</span>
+            <span class="tag">OpenAI (gpt-4o / gpt-4o-mini)</span>
+            <span class="tag">DeepSeek</span>
+            <span class="tag">Moonshot</span>
+            <span class="tag">Tongyi / Wenxin / Ollama</span>
+          </div>
+        </div>
+        <div class="grp">
+          <div class="grp-title">Memory &amp; Retriever</div>
+          <div class="tags">
+            <span class="tag h">TokenBufferMemory</span>
+            <span class="tag">SemanticRetriever</span>
+            <span class="tag">FullTextRetriever</span>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--orange)">
+        <div class="ctitle">Tools &amp; Workflow</div>
+        <div class="grp">
+          <div class="grp-title">Builtin Tools</div>
+          <div class="tags">
+            <span class="tag h">BuiltinProviderManager</span>
+            <span class="tag">google_serper</span>
+            <span class="tag">duckduckgo</span>
+            <span class="tag">gaode_weather</span>
+            <span class="tag">dalle3</span>
+            <span class="tag">wikipedia_search</span>
+            <span class="tag">current_time</span>
+            <span class="tag">markdown_to_pptx</span>
+          </div>
+        </div>
+        <div class="grp">
+          <div class="grp-title">API Tools</div>
+          <div class="tags">
+            <span class="tag h">ApiProviderManager</span>
+            <span class="tag">StructuredTool (动态生成)</span>
+            <span class="tag">OpenAPI Schema 解析</span>
+          </div>
+        </div>
+        <div class="grp">
+          <div class="grp-title">Workflow Engine</div>
+          <div class="tags">
+            <span class="tag h">WorkflowTool</span>
+            <span class="tag">LLMNode</span>
+            <span class="tag">CodeNode</span>
+            <span class="tag">ToolNode</span>
+            <span class="tag">DatasetRetrievalNode</span>
+            <span class="tag">HttpRequestNode</span>
+            <span class="tag">TemplateTransformNode</span>
+            <span class="tag">StartNode / EndNode</span>
+          </div>
+        </div>
+        <div class="grp">
+          <div class="grp-title">Builtin Apps</div>
+          <div class="tags">
+            <span class="tag h">BuiltinAppManager</span>
+            <span class="tag">LLM产品经理 / 旅行助手</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
+
+    <!-- LAYER 5: 数据 & 存储 -->
+    <div class="llabel">&#9658; Layer 5 &middot; 数据模型 &amp; 存储 Data / Storage</div>
+    <div class="row r2">
+      <div class="card" style="--cc:var(--green)">
+        <div class="ctitle">internal/model/ &mdash; ORM 数据模型</div>
+        <div class="tags">
+          <span class="tag h">App / AppConfig / AppConfigVersion</span>
+          <span class="tag h">Conversation / Message</span>
+          <span class="tag h">Dataset / Document / Segment</span>
+          <span class="tag h">ApiToolProvider / ApiTool</span>
+          <span class="tag">Account / AccountOAuth</span>
+          <span class="tag">UploadFile</span>
+          <span class="tag">Workflow</span>
+          <span class="tag">ApiKey</span>
+          <span class="tag">Platform / EndUser</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--green)">
+        <div class="ctitle">存储层 Storage</div>
+        <div class="tags">
+          <span class="tag h">PostgreSQL (主数据库)</span>
+          <span class="tag h">Redis (缓存 / 消息队列)</span>
+          <span class="tag h">Weaviate (向量数据库)</span>
+          <span class="tag h">FAISS (本地向量索引)</span>
+          <span class="tag">COS / 对象存储 (文件)</span>
+          <span class="tag">本地文件系统 (uploads)</span>
+        </div>
+        <div class="grp">
+          <div class="grp-title">异步任务 (internal/task/)</div>
+          <div class="tags">
+            <span class="tag h">document_task — 文档索引构建</span>
+            <span class="tag">app_task — 应用操作</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend">
+      <div class="li"><div class="ld" style="background:var(--blue)"></div> 入口 Entry</div>
+      <div class="li"><div class="ld" style="background:var(--cyan)"></div> 扩展 / 中间件</div>
+      <div class="li"><div class="ld" style="background:var(--yellow)"></div> 路由 / Handler</div>
+      <div class="li"><div class="ld" style="background:var(--purple)"></div> 业务服务 Service</div>
+      <div class="li"><div class="ld" style="background:var(--orange)"></div> 核心能力 Core</div>
+      <div class="li"><div class="ld" style="background:var(--green)"></div> 数据 / 存储 Data</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+
+    <div class="llabel">&#9658; Layer 1 &middot; 扩展 &amp; 中间件 Extension / Middleware</div>
+    <div class="row r2">
+      <div class="card" style="--cc:var(--cyan)">
+        <div class="ctitle">internal/extension</div>
+        <div class="tags">
+          <span class="tag h">SQLAlchemy (PostgreSQL)</span>
+          <span class="tag h">Redis</span>
+          <span class="tag h">Weaviate 向量库</span>
+          <span class="tag h">Celery 异步队列</span>
+          <span class="tag">Flask-Login</span>
+          <span class="tag">Flask-Migrate</span>
+          <span class="tag">Logging</span>
+        </div>
+      </div>
+      <div class="card" style="--cc:var(--cyan)">
+        <div class="ctitle">middleware &amp; pkg/</div>
+        <div class="tags">
+          <span class="tag h">JWT 鉴权</span>
+          <span class="tag h">OAuth (GitHub)</span>
+          <span class="tag">Paginator 分页</span>
+          <span class="tag">Password 工具</span>
+          <span class="tag">统一 Response</span>
+          <span class="tag">HTTP Code 枚举</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="arrow">&#8595;</div>
