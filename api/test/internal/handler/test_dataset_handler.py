@@ -1,15 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """知识库模块接口测试"""
+import os
 from datetime import datetime
 from types import SimpleNamespace
 from uuid import UUID, uuid4
 
 from internal.entity.dataset_entity import DocumentStatus, ProcessType, RetrievalStrategy, SegmentStatus
 from internal.model import Account, Dataset, Document, ProcessRule, Segment, UploadFile
+from internal.service.jwt_service import JwtService
 from pkg.response import HttpCode
 
 TEST_ACCOUNT_ID = UUID("46db30d1-3199-4e79-a0cd-abf12fa6858f")
+TEST_ACCOUNT_EMAIL = os.getenv("TEST_EMAIL", "test@imooc.com")
+TEST_ACCOUNT_PASSWORD = os.getenv("TEST_PASSWORD", "Test1234")
+TEST_ACCOUNT_TOKEN = JwtService.generate_token({
+    "sub": str(TEST_ACCOUNT_ID),
+    "iss": "llmops",
+    "exp": 4102444800,
+})
 
 
 class DummyLock:
@@ -52,10 +61,14 @@ class DummyVectorCollection:
 def ensure_test_account(db):
     account = db.session.query(Account).get(TEST_ACCOUNT_ID)
     if account is None:
-        account = Account(id=TEST_ACCOUNT_ID, name="Test User", email="test@imooc.com", avatar="")
+        account = Account(id=TEST_ACCOUNT_ID, name="Test User", email=TEST_ACCOUNT_EMAIL, avatar="")
         db.session.add(account)
         db.session.commit()
     return account
+
+
+def ensure_test_token(client):
+    client.environ_base["HTTP_AUTHORIZATION"] = f"Bearer {TEST_ACCOUNT_TOKEN}"
 
 
 def get_handler(app, endpoint):
@@ -151,6 +164,7 @@ def create_segment(db, dataset_id, document_id, content="这是知识库片段",
 class TestKnowledgeBaseHandler:
     def test_dataset_crud(self, client, db, monkeypatch):
         ensure_test_account(db)
+        ensure_test_token(client)
 
         create_resp = client.post("/datasets", json={
             "name": "新建知识库",
@@ -181,6 +195,7 @@ class TestKnowledgeBaseHandler:
 
     def test_dataset_hit(self, client, app, db, monkeypatch):
         ensure_test_account(db)
+        ensure_test_token(client)
         dataset = create_dataset(db)
         document = create_document(db, dataset.id)
         segment = create_segment(db, dataset.id, document.id)
@@ -205,6 +220,7 @@ class TestKnowledgeBaseHandler:
 
     def test_document_endpoints(self, client, app, db, monkeypatch):
         ensure_test_account(db)
+        ensure_test_token(client)
         dataset = create_dataset(db)
         upload_file_1 = create_upload_file(db, "一号文档.md")
         upload_file_2 = create_upload_file(db, "二号文档.md")
@@ -219,6 +235,11 @@ class TestKnowledgeBaseHandler:
         assert len(create_resp.json["data"]["documents"]) == 2
 
         document = db.session.query(Document).filter(Document.dataset_id == dataset.id).order_by(Document.position.asc()).first()
+        document.status = DocumentStatus.COMPLETED
+        document.enabled = True
+        document.disabled_at = None
+        db.session.commit()
+
         list_resp = client.get(f"/datasets/{dataset.id}/documents", query_string={"search_word": "一号"})
         detail_resp = client.get(f"/datasets/{dataset.id}/documents/{document.id}")
         assert list_resp.json.get("code") == HttpCode.SUCCESS
@@ -243,6 +264,7 @@ class TestKnowledgeBaseHandler:
 
     def test_segment_endpoints(self, client, app, db, monkeypatch):
         ensure_test_account(db)
+        ensure_test_token(client)
         dataset = create_dataset(db)
         document = create_document(db, dataset.id)
 
