@@ -74,7 +74,8 @@ class Http(Flask):
         router.register_router(self)
 
         # 8.注册本地上传文件的静态文件路由（COS未配置时使用）
-        storage_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "storage", "uploads")
+        # 与 CosService._save_to_local 保持一致，统一使用 api/storage/uploads
+        storage_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "..", "storage", "uploads")
 
         @self.route("/static/uploads/<path:filename>")
         def serve_uploaded_file(filename):

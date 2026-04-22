@@ -8,15 +8,18 @@
 from dataclasses import dataclass
 from typing import Any
 
+import dotenv
 from flask import Flask
 from flask_weaviate import FlaskWeaviate
 from injector import inject
 from langchain_core.documents import Document
+from langchain_core.embeddings import Embeddings
 from langchain_core.vectorstores import VectorStoreRetriever
 from langchain_weaviate import WeaviateVectorStore
 from weaviate.collections import Collection
 
-from .embeddings_service import EmbeddingsService
+from config import Config
+from internal.service.embeddings_service import EmbeddingsService
 
 # 向量数据库的集合名字
 COLLECTION_NAME = "Dataset"
@@ -53,3 +56,52 @@ class VectorDatabaseService:
     @property
     def collection(self) -> Collection:
         return self.weaviate.client.collections.get(COLLECTION_NAME)
+
+
+class _DummyEmbeddings(Embeddings):
+    """仅用于 main 本地测试，避免真实调用外部 Embedding 服务"""
+
+    def embed_documents(self, texts: list[str]) -> list[list[float]]:
+        return [[0.0] * 8 for _ in texts]
+
+    def embed_query(self, text: str) -> list[float]:
+        return [0.0] * 8
+
+
+class _DummyEmbeddingsService:
+    """仅提供 VectorDatabaseService 需要的 cache_backed_embeddings 属性"""
+
+    @property
+    def cache_backed_embeddings(self) -> Embeddings:
+        return _DummyEmbeddings()
+
+
+def main():
+    """本地快速验证 VectorDatabaseService 的基础能力"""
+    dotenv.load_dotenv()
+    app = Flask(__name__)
+    app.config.from_object(Config())
+    weaviate = FlaskWeaviate()
+    weaviate.init_app(app)
+    service = VectorDatabaseService(
+        weaviate=weaviate,
+        embeddings_service=_DummyEmbeddingsService(),  # type: ignore[arg-type]
+    )
+
+    with app.app_context():
+        try:
+            vector_store = service.vector_store
+            print(f"[OK] vector_store 创建成功: {type(vector_store).__name__}")
+        except Exception as error:
+            print(f"[FAIL] vector_store 创建失败: {error}")
+            return
+
+        try:
+            collection = service.collection
+            print(f"[OK] collection 访问成功: {collection.name}")
+        except Exception as error:
+            print(f"[FAIL] collection 访问失败: {error}")
+
+
+if __name__ == "__main__":
+    main()

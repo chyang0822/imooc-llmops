@@ -1,54 +1,533 @@
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - select pg_catalog.version()
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - [raw sql] {}
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - select current_schema()
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - [raw sql] {}
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - show standard_conforming_strings
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - [raw sql] {}
-2026-04-11 21:41:17 [    INFO] sqlalchemy.engine.Engine - BEGIN (implicit)
-2026-04-11 21:41:18 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - select pg_catalog.version()
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [raw sql] {}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - select current_schema()
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [raw sql] {}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - show standard_conforming_strings
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [raw sql] {}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - BEGIN (implicit)
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
 FROM account 
 WHERE account.id = %(pk_1)s::UUID
-2026-04-11 21:41:18 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00134s] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
-2026-04-11 21:41:18 [    INFO] sqlalchemy.engine.Engine - INSERT INTO account (id, name, email, avatar, assistant_agent_conversation_id) VALUES (%(id)s::UUID, %(name)s, %(email)s, %(avatar)s, %(assistant_agent_conversation_id)s::UUID) RETURNING account.password, account.password_salt, account.last_login_at, account.last_login_ip, account.updated_at, account.created_at
-2026-04-11 21:41:18 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00059s] {'id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': 'Test User', 'email': 'test@imooc.com', 'avatar': '', 'assistant_agent_conversation_id': None}
-2026-04-11 21:41:18 [   ERROR] root - An error occurred: 
-Traceback (most recent call last):
-  File "/Users/chyang/Documents/Notes/course_resources/LLM/【0】代码+PDF课件+电子书/imooc-llmops/api/internal/service/jwt_service.py", line 34, in parse_token
-    return jwt.decode(token, secret_key, algorithms=["HS256"])
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/jwt/api_jwt.py", line 371, in decode
-    decoded = self.decode_complete(
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/jwt/api_jwt.py", line 268, in decode_complete
-    decoded = self._jws.decode_complete(
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/jwt/api_jws.py", line 244, in decode_complete
-    self._verify_signature(signing_input, header, signature, key, algorithms)
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/jwt/api_jws.py", line 359, in _verify_signature
-    raise InvalidSignatureError("Signature verification failed")
-jwt.exceptions.InvalidSignatureError: Signature verification failed
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00116s] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - INSERT INTO account (id, name, email, avatar, assistant_agent_conversation_id) VALUES (%(id)s::UUID, %(name)s, %(email)s, %(avatar)s, %(assistant_agent_conversation_id)s::UUID) RETURNING account.password, account.password_salt, account.last_login_at, account.last_login_ip, account.updated_at, account.created_at
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00084s] {'id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': 'Test User', 'email': 'test@imooc.com', 'avatar': '', 'assistant_agent_conversation_id': None}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [cached since 0.01817s ago] {'pk_1': '46db30d1-3199-4e79-a0cd-abf12fa6858f'}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.account_id = %(account_id_1)s::UUID AND dataset.name = %(name_1)s
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00067s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name_1': '新建知识库'}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - INSERT INTO dataset (account_id, name, icon, description) VALUES (%(account_id)s::UUID, %(name)s, %(icon)s, %(description)s) RETURNING dataset.id, dataset.updated_at, dataset.created_at
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00085s] {'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '新建知识库', 'icon': 'https://cdn.imooc.com/new-dataset.png', 'description': '当你需要回答管理《新建知识库》的时候可以引用该知识库。'}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.name = %(name_1)s
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00086s] {'name_1': '新建知识库'}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00074s] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.account_id = %(account_id_1)s::UUID AND dataset.name ILIKE %(name_1)s ORDER BY dataset.created_at DESC 
+ LIMIT %(param_1)s OFFSET %(param_2)s
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00072s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name_1': '%新建%', 'param_1': 20, 'param_2': 0}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT count(*) AS count_1 
+FROM (SELECT dataset.id AS id, dataset.account_id AS account_id, dataset.name AS name, dataset.icon AS icon, dataset.description AS description, dataset.updated_at AS updated_at, dataset.created_at AS created_at 
+FROM dataset 
+WHERE dataset.account_id = %(account_id_1)s::UUID AND dataset.name ILIKE %(name_1)s) AS anon_1
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00080s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name_1': '%新建%'}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT count(document.id) AS count_1 
+FROM document 
+WHERE document.dataset_id = %(dataset_id_1)s::UUID
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00078s] {'dataset_id_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - SELECT count(app_dataset_join.id) AS count_1 
+FROM app_dataset_join 
+WHERE app_dataset_join.dataset_id = %(dataset_id_1)s::UUID
+2026-04-19 17:27:48 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00522s] {'dataset_id_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(sum(document.character_count), %(coalesce_2)s) AS coalesce_1 
+FROM document 
+WHERE document.dataset_id = %(dataset_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00063s] {'coalesce_2': 0, 'dataset_id_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.account_id = %(account_id_1)s::UUID AND dataset.name = %(name_1)s AND dataset.id != %(id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00065s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name_1': '更新后的知识库', 'id_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE dataset SET name=%(name)s, icon=%(icon)s, description=%(description)s, updated_at=%(updated_at)s WHERE dataset.id = %(dataset_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00082s] {'name': '更新后的知识库', 'icon': 'https://cdn.imooc.com/dataset-updated.png', 'description': '当你需要回答管理《更新后的知识库》的时候可以引用该知识库。', 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 17682), 'dataset_id': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def accumulate(self, *args, **kwargs):
+    return 1
 
-During handling of the above exception, another exception occurred:
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def chunks(task, it, n):
+    return 1
 
-Traceback (most recent call last):
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask/app.py", line 870, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask/app.py", line 855, in dispatch_request
-    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask_login/utils.py", line 284, in decorated_view
-    elif not current_user.is_authenticated:
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/werkzeug/local.py", line 318, in __get__
-    obj = instance._get_current_object()
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/werkzeug/local.py", line 526, in _get_current_object
-    return get_name(local())
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask_login/utils.py", line 25, in <lambda>
-    current_user = LocalProxy(lambda: _get_user())
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask_login/utils.py", line 370, in _get_user
-    current_app.login_manager._load_user()
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask_login/login_manager.py", line 378, in _load_user
-    user = self._load_user_from_request(request)
-  File "/Users/chyang/opt/anaconda3/envs/llmops/lib/python3.10/site-packages/flask_login/login_manager.py", line 441, in _load_user_from_request
-    user = self._request_callback(request)
-  File "/Users/chyang/Documents/Notes/course_resources/LLM/【0】代码+PDF课件+电子书/imooc-llmops/api/internal/middleware/middleware.py", line 35, in request_loader
-    payload = self.jwt_service.parse_token(access_token)
-  File "/Users/chyang/Documents/Notes/course_resources/LLM/【0】代码+PDF课件+电子书/imooc-llmops/api/internal/service/jwt_service.py", line 38, in parse_token
-    raise UnauthorizedException("解析token出错，请重新登陆")
-internal.exception.exception.UnauthorizedException
-2026-04-11 21:41:18 [    INFO] sqlalchemy.engine.Engine - ROLLBACK
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def unlock_chord(self, group_id, callback, interval=0, max_retries=1, result=2, Result=3, GroupResult=4, result_from_tuple=5, **kwargs):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def delete_document(dataset_id, document_id):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def group(self, tasks, result, group_id, partial_args, add_to_parent=0):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def update_document_enabled(document_id):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def auto_create_app(name, description, account_id):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def xmap(task, it):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def delete_dataset(dataset_id):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def build_documents(document_ids):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def chain(*args, **kwargs):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def xstarmap(task, it):
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def backend_cleanup():
+    return 1
+
+2026-04-19 17:27:49 [   DEBUG] celery.utils.functional - 
+def chord(self, header, body, partial_args=0, interval=1, countdown=2, max_retries=3, eager=4, **kwargs):
+    return 1
+
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00080s] {'pk_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.08537s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - DELETE FROM dataset WHERE dataset.id = %(id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00068s] {'id': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - DELETE FROM app_dataset_join WHERE app_dataset_join.dataset_id = %(dataset_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00076s] {'dataset_id_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00069s] {'pk_1': UUID('ba716121-c60f-4c28-91dc-05c3d0aae9cd')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - ROLLBACK
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - BEGIN (implicit)
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1541s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO account (id, name, email, avatar, assistant_agent_conversation_id) VALUES (%(id)s::UUID, %(name)s, %(email)s, %(avatar)s, %(assistant_agent_conversation_id)s::UUID) RETURNING account.password, account.password_salt, account.last_login_at, account.last_login_ip, account.updated_at, account.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1486s ago] {'id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': 'Test User', 'email': 'test@imooc.com', 'avatar': '', 'assistant_agent_conversation_id': None}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO dataset (id, account_id, name, icon, description) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(icon)s, %(description)s) RETURNING dataset.updated_at, dataset.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00050s] {'id': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '知识库测试', 'icon': 'https://cdn.imooc.com/dataset.png', 'description': '知识库描述'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.03724s ago] {'pk_1': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO upload_file (id, account_id, name, key, size, extension, mime_type, hash) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(key)s, %(size)s, %(extension)s, %(mime_type)s, %(hash)s) RETURNING upload_file.updated_at, upload_file.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00068s] {'id': UUID('e650a934-a41b-4382-8a7f-5f0327cce8da'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '产品说明书.md', 'key': 'uploads/产品说明书.md', 'size': 1024, 'extension': 'md', 'mime_type': 'text/markdown', 'hash': '0c930e1771be44738e593e5ab0c7b8c8'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO process_rule (id, account_id, dataset_id, mode, rule) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(dataset_id)s::UUID, %(mode)s, %(rule)s::JSONB) RETURNING process_rule.updated_at, process_rule.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00071s] {'id': UUID('e0307f7c-604b-4efc-8b28-5704db57840e'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f'), 'mode': <ProcessType.AUTOMATIC: 'automatic'>, 'rule': '{"pre_process_rules": [], "segment": {"separators": ["\\n"], "chunk_size": 500, "chunk_overlap": 50}}'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00056s] {'pk_1': UUID('e650a934-a41b-4382-8a7f-5f0327cce8da')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT process_rule.id AS process_rule_id, process_rule.account_id AS process_rule_account_id, process_rule.dataset_id AS process_rule_dataset_id, process_rule.mode AS process_rule_mode, process_rule.rule AS process_rule_rule, process_rule.updated_at AS process_rule_updated_at, process_rule.created_at AS process_rule_created_at 
+FROM process_rule 
+WHERE process_rule.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00060s] {'pk_1': UUID('e0307f7c-604b-4efc-8b28-5704db57840e')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO document (id, account_id, dataset_id, upload_file_id, process_rule_id, batch, name, position, processing_started_at, parsing_completed_at, splitting_completed_at, indexing_completed_at, completed_at, stopped_at, enabled, disabled_at, status) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(dataset_id)s::UUID, %(upload_file_id)s::UUID, %(process_rule_id)s::UUID, %(batch)s, %(name)s, %(position)s, %(processing_started_at)s, %(parsing_completed_at)s, %(splitting_completed_at)s, %(indexing_completed_at)s, %(completed_at)s, %(stopped_at)s, %(enabled)s, %(disabled_at)s, %(status)s) RETURNING document.character_count, document.token_count, document.error, document.updated_at, document.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00084s] {'id': UUID('df5a871f-4852-441e-89e4-95da849ce8af'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f'), 'upload_file_id': UUID('e650a934-a41b-4382-8a7f-5f0327cce8da'), 'process_rule_id': UUID('e0307f7c-604b-4efc-8b28-5704db57840e'), 'batch': 'batch-001', 'name': '产品说明书.md', 'position': 1, 'processing_started_at': None, 'parsing_completed_at': None, 'splitting_completed_at': None, 'indexing_completed_at': None, 'completed_at': None, 'stopped_at': None, 'enabled': True, 'disabled_at': None, 'status': <DocumentStatus.COMPLETED: 'completed'>}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.07026s ago] {'pk_1': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00082s] {'pk_1': UUID('df5a871f-4852-441e-89e4-95da849ce8af')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO segment (id, account_id, dataset_id, document_id, node_id, position, content, character_count, token_count, keywords, hash, hit_count, enabled, disabled_at, processing_started_at, indexing_completed_at, completed_at, stopped_at, status) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(dataset_id)s::UUID, %(document_id)s::UUID, %(node_id)s::UUID, %(position)s, %(content)s, %(character_count)s, %(token_count)s, %(keywords)s::JSONB, %(hash)s, %(hit_count)s, %(enabled)s, %(disabled_at)s, %(processing_started_at)s, %(indexing_completed_at)s, %(completed_at)s, %(stopped_at)s, %(status)s) RETURNING segment.error, segment.updated_at, segment.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00095s] {'id': UUID('9d4e78da-25a8-43e9-8882-23733755a1d0'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f'), 'document_id': UUID('df5a871f-4852-441e-89e4-95da849ce8af'), 'node_id': UUID('a109729e-4b9c-4a04-940e-05f8444abd03'), 'position': 1, 'content': '这是知识库片段', 'character_count': 7, 'token_count': 3, 'keywords': '["\\u77e5\\u8bc6\\u5e93", "\\u6d4b\\u8bd5"]', 'hash': 'hash-1', 'hit_count': 2, 'enabled': True, 'disabled_at': None, 'processing_started_at': None, 'indexing_completed_at': None, 'completed_at': None, 'stopped_at': None, 'status': <SegmentStatus.COMPLETED: 'completed'>}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.08931s ago] {'pk_1': UUID('e31c2eaf-f4d2-4042-9d62-e3fa00edd50f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2185s ago] {'pk_1': '46db30d1-3199-4e79-a0cd-abf12fa6858f'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00084s] {'pk_1': UUID('9d4e78da-25a8-43e9-8882-23733755a1d0')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id IN (%(id_1_1)s::UUID)
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00090s] {'id_1_1': '9d4e78da-25a8-43e9-8882-23733755a1d0'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.04367s ago] {'pk_1': UUID('df5a871f-4852-441e-89e4-95da849ce8af')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00054s] {'id_1': UUID('e650a934-a41b-4382-8a7f-5f0327cce8da')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - ROLLBACK
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - BEGIN (implicit)
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2606s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO account (id, name, email, avatar, assistant_agent_conversation_id) VALUES (%(id)s::UUID, %(name)s, %(email)s, %(avatar)s, %(assistant_agent_conversation_id)s::UUID) RETURNING account.password, account.password_salt, account.last_login_at, account.last_login_ip, account.updated_at, account.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.255s ago] {'id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': 'Test User', 'email': 'test@imooc.com', 'avatar': '', 'assistant_agent_conversation_id': None}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO dataset (id, account_id, name, icon, description) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(icon)s, %(description)s) RETURNING dataset.updated_at, dataset.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1078s ago] {'id': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '知识库测试', 'icon': 'https://cdn.imooc.com/dataset.png', 'description': '知识库描述'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO upload_file (id, account_id, name, key, size, extension, mime_type, hash) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(key)s, %(size)s, %(extension)s, %(mime_type)s, %(hash)s) RETURNING upload_file.updated_at, upload_file.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.104s ago] {'id': UUID('a8b0ee11-88d5-42a6-966f-beb7172c7a11'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '一号文档.md', 'key': 'uploads/一号文档.md', 'size': 1024, 'extension': 'md', 'mime_type': 'text/markdown', 'hash': '3e293bb9057f419a8f260b779b18f53e'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO upload_file (id, account_id, name, key, size, extension, mime_type, hash) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(key)s, %(size)s, %(extension)s, %(mime_type)s, %(hash)s) RETURNING upload_file.updated_at, upload_file.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1129s ago] {'id': UUID('e7281cba-f8cc-4d13-ac8c-548697f7c19e'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '二号文档.md', 'key': 'uploads/二号文档.md', 'size': 1024, 'extension': 'md', 'mime_type': 'text/markdown', 'hash': '69d9d160a2ab4ae3a249bae2ddae1b3e'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.157s ago] {'pk_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1039s ago] {'pk_1': UUID('a8b0ee11-88d5-42a6-966f-beb7172c7a11')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1081s ago] {'pk_1': UUID('e7281cba-f8cc-4d13-ac8c-548697f7c19e')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2924s ago] {'pk_1': '46db30d1-3199-4e79-a0cd-abf12fa6858f'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.account_id = %(account_id_1)s::UUID AND upload_file.id IN (%(id_1_1)s::UUID, %(id_1_2)s::UUID)
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00086s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'id_1_1': 'a8b0ee11-88d5-42a6-966f-beb7172c7a11', 'id_1_2': 'e7281cba-f8cc-4d13-ac8c-548697f7c19e'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO process_rule (account_id, dataset_id, mode, rule) VALUES (%(account_id)s::UUID, %(dataset_id)s::UUID, %(mode)s, %(rule)s::JSONB) RETURNING process_rule.id, process_rule.updated_at, process_rule.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00059s] {'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'mode': 'automatic', 'rule': '{"pre_process_rules": [{"id": "remove_extra_space", "enabled": true}, {"id": "remove_url_and_email", "enabled": true}], "segment": {"separators": ["\ ... (15 characters truncated) ... "\\u3002|\\uff01|\\uff1f", "\\\\.\\\\s|\\\\!\\\\s|\\\\?\\\\s", "\\uff1b|;\\\\s", "\\uff0c|,\\\\s", " ", ""], "chunk_size": 500, "chunk_overlap": 50}}'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.dataset_id = %(dataset_id_1)s::UUID ORDER BY document.position DESC 
+ LIMIT %(param_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00070s] {'dataset_id_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'param_1': 1}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2602s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1285s ago] {'pk_1': UUID('a8b0ee11-88d5-42a6-966f-beb7172c7a11')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT process_rule.id AS process_rule_id, process_rule.account_id AS process_rule_account_id, process_rule.dataset_id AS process_rule_dataset_id, process_rule.mode AS process_rule_mode, process_rule.rule AS process_rule_rule, process_rule.updated_at AS process_rule_updated_at, process_rule.created_at AS process_rule_created_at 
+FROM process_rule 
+WHERE process_rule.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1263s ago] {'pk_1': UUID('aaa87214-612e-4edc-922c-6642351d76d1')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO document (account_id, dataset_id, upload_file_id, process_rule_id, batch, name, position, processing_started_at, parsing_completed_at, splitting_completed_at, indexing_completed_at, completed_at, stopped_at, disabled_at) VALUES (%(account_id)s::UUID, %(dataset_id)s::UUID, %(upload_file_id)s::UUID, %(process_rule_id)s::UUID, %(batch)s, %(name)s, %(position)s, %(processing_started_at)s, %(parsing_completed_at)s, %(splitting_completed_at)s, %(indexing_completed_at)s, %(completed_at)s, %(stopped_at)s, %(disabled_at)s) RETURNING document.id, document.character_count, document.token_count, document.error, document.enabled, document.status, document.updated_at, document.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00064s] {'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'upload_file_id': UUID('a8b0ee11-88d5-42a6-966f-beb7172c7a11'), 'process_rule_id': UUID('aaa87214-612e-4edc-922c-6642351d76d1'), 'batch': '20260419172749174758', 'name': '一号文档.md', 'position': 1, 'processing_started_at': None, 'parsing_completed_at': None, 'splitting_completed_at': None, 'indexing_completed_at': None, 'completed_at': None, 'stopped_at': None, 'disabled_at': None}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2707s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1427s ago] {'pk_1': UUID('e7281cba-f8cc-4d13-ac8c-548697f7c19e')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT process_rule.id AS process_rule_id, process_rule.account_id AS process_rule_account_id, process_rule.dataset_id AS process_rule_dataset_id, process_rule.mode AS process_rule_mode, process_rule.rule AS process_rule_rule, process_rule.updated_at AS process_rule_updated_at, process_rule.created_at AS process_rule_created_at 
+FROM process_rule 
+WHERE process_rule.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1404s ago] {'pk_1': UUID('aaa87214-612e-4edc-922c-6642351d76d1')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO document (account_id, dataset_id, upload_file_id, process_rule_id, batch, name, position, processing_started_at, parsing_completed_at, splitting_completed_at, indexing_completed_at, completed_at, stopped_at, disabled_at) VALUES (%(account_id)s::UUID, %(dataset_id)s::UUID, %(upload_file_id)s::UUID, %(process_rule_id)s::UUID, %(batch)s, %(name)s, %(position)s, %(processing_started_at)s, %(parsing_completed_at)s, %(splitting_completed_at)s, %(indexing_completed_at)s, %(completed_at)s, %(stopped_at)s, %(disabled_at)s) RETURNING document.id, document.character_count, document.token_count, document.error, document.enabled, document.status, document.updated_at, document.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.01366s ago] {'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'upload_file_id': UUID('e7281cba-f8cc-4d13-ac8c-548697f7c19e'), 'process_rule_id': UUID('aaa87214-612e-4edc-922c-6642351d76d1'), 'batch': '20260419172749174758', 'name': '二号文档.md', 'position': 2, 'processing_started_at': None, 'parsing_completed_at': None, 'splitting_completed_at': None, 'indexing_completed_at': None, 'completed_at': None, 'stopped_at': None, 'disabled_at': None}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1304s ago] {'pk_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1326s ago] {'pk_1': UUID('67e430bc-66b2-4931-9529-bade24fdbfc3')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2131s ago] {'pk_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.dataset_id = %(dataset_id_1)s::UUID ORDER BY document.position ASC 
+ LIMIT %(param_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00090s] {'dataset_id_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'param_1': 1}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE document SET enabled=%(enabled)s, status=%(status)s, updated_at=%(updated_at)s WHERE document.id = %(document_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00067s] {'enabled': True, 'status': <DocumentStatus.COMPLETED: 'completed'>, 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 262819), 'document_id': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2233s ago] {'pk_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3051s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.account_id = %(account_id_1)s::UUID AND document.dataset_id = %(dataset_id_1)s::UUID AND document.name ILIKE %(name_1)s ORDER BY document.created_at DESC 
+ LIMIT %(param_1)s OFFSET %(param_2)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00086s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'name_1': '%一号%', 'param_1': 20, 'param_2': 0}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(*) AS count_1 
+FROM (SELECT document.id AS id, document.account_id AS account_id, document.dataset_id AS dataset_id, document.upload_file_id AS upload_file_id, document.process_rule_id AS process_rule_id, document.batch AS batch, document.name AS name, document.position AS position, document.character_count AS character_count, document.token_count AS token_count, document.processing_started_at AS processing_started_at, document.parsing_completed_at AS parsing_completed_at, document.splitting_completed_at AS splitting_completed_at, document.indexing_completed_at AS indexing_completed_at, document.completed_at AS completed_at, document.stopped_at AS stopped_at, document.error AS error, document.enabled AS enabled, document.disabled_at AS disabled_at, document.status AS status, document.updated_at AS updated_at, document.created_at AS created_at 
+FROM document 
+WHERE document.account_id = %(account_id_1)s::UUID AND document.dataset_id = %(dataset_id_1)s::UUID AND document.name ILIKE %(name_1)s) AS anon_1
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00061s] {'account_id_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'name_1': '%一号%'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(sum(segment.hit_count), %(coalesce_2)s) AS coalesce_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00068s] {'coalesce_2': 0, 'document_id_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(segment.id) AS count_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00053s] {'document_id_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(sum(segment.hit_count), %(coalesce_2)s) AS coalesce_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.01098s ago] {'coalesce_2': 0, 'document_id_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE document SET name=%(name)s, updated_at=%(updated_at)s WHERE document.id = %(document_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00078s] {'name': '重命名文档.md', 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 309831), 'document_id': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2717s ago] {'pk_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1992s ago] {'pk_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3559s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE document SET enabled=%(enabled)s, disabled_at=%(disabled_at)s, updated_at=%(updated_at)s WHERE document.id = %(document_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00061s] {'enabled': False, 'disabled_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 321327), 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 322305), 'document_id': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2081s ago] {'pk_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.2916s ago] {'pk_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3733s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.dataset_id = %(dataset_id_1)s::UUID AND document.batch = %(batch_1)s ORDER BY document.position ASC
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00083s] {'dataset_id_1': UUID('49d17e56-428c-47b4-8c2d-25702463bdcb'), 'batch_1': '20260419172749174758'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(segment.id) AS count_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.05293s ago] {'document_id_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(segment.id) AS count_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID AND segment.status = %(status_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00066s] {'document_id_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7'), 'status_1': <SegmentStatus.COMPLETED: 'completed'>}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1876s ago] {'id_1': UUID('a8b0ee11-88d5-42a6-966f-beb7172c7a11')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(segment.id) AS count_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.06169s ago] {'document_id_1': UUID('67e430bc-66b2-4931-9529-bade24fdbfc3')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(segment.id) AS count_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID AND segment.status = %(status_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.008122s ago] {'document_id_1': UUID('67e430bc-66b2-4931-9529-bade24fdbfc3'), 'status_1': <SegmentStatus.COMPLETED: 'completed'>}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.1955s ago] {'id_1': UUID('e7281cba-f8cc-4d13-ac8c-548697f7c19e')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - DELETE FROM document WHERE document.id = %(id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00060s] {'id': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00086s] {'pk_1': UUID('e472950d-222d-4bfe-9dc5-8a54ed9561d7')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - ROLLBACK
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - BEGIN (implicit)
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.464s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO account (id, name, email, avatar, assistant_agent_conversation_id) VALUES (%(id)s::UUID, %(name)s, %(email)s, %(avatar)s, %(assistant_agent_conversation_id)s::UUID) RETURNING account.password, account.password_salt, account.last_login_at, account.last_login_ip, account.updated_at, account.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.4582s ago] {'id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': 'Test User', 'email': 'test@imooc.com', 'avatar': '', 'assistant_agent_conversation_id': None}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO dataset (id, account_id, name, icon, description) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(icon)s, %(description)s) RETURNING dataset.updated_at, dataset.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3102s ago] {'id': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '知识库测试', 'icon': 'https://cdn.imooc.com/dataset.png', 'description': '知识库描述'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3595s ago] {'pk_1': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO upload_file (id, account_id, name, key, size, extension, mime_type, hash) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(name)s, %(key)s, %(size)s, %(extension)s, %(mime_type)s, %(hash)s) RETURNING upload_file.updated_at, upload_file.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.331s ago] {'id': UUID('e69f8e76-eb94-4cc0-beb5-915b0a09ccbb'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'name': '产品说明书.md', 'key': 'uploads/产品说明书.md', 'size': 1024, 'extension': 'md', 'mime_type': 'text/markdown', 'hash': '2057824f6caf413d8a811e1c5a2dd525'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO process_rule (id, account_id, dataset_id, mode, rule) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(dataset_id)s::UUID, %(mode)s, %(rule)s::JSONB) RETURNING process_rule.updated_at, process_rule.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3251s ago] {'id': UUID('96344fba-cefc-4e77-a2a1-0f068097d4b2'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b'), 'mode': <ProcessType.AUTOMATIC: 'automatic'>, 'rule': '{"pre_process_rules": [], "segment": {"separators": ["\\n"], "chunk_size": 500, "chunk_overlap": 50}}'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT upload_file.id AS upload_file_id, upload_file.account_id AS upload_file_account_id, upload_file.name AS upload_file_name, upload_file.key AS upload_file_key, upload_file.size AS upload_file_size, upload_file.extension AS upload_file_extension, upload_file.mime_type AS upload_file_mime_type, upload_file.hash AS upload_file_hash, upload_file.updated_at AS upload_file_updated_at, upload_file.created_at AS upload_file_created_at 
+FROM upload_file 
+WHERE upload_file.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3242s ago] {'pk_1': UUID('e69f8e76-eb94-4cc0-beb5-915b0a09ccbb')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT process_rule.id AS process_rule_id, process_rule.account_id AS process_rule_account_id, process_rule.dataset_id AS process_rule_dataset_id, process_rule.mode AS process_rule_mode, process_rule.rule AS process_rule_rule, process_rule.updated_at AS process_rule_updated_at, process_rule.created_at AS process_rule_created_at 
+FROM process_rule 
+WHERE process_rule.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3232s ago] {'pk_1': UUID('96344fba-cefc-4e77-a2a1-0f068097d4b2')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO document (id, account_id, dataset_id, upload_file_id, process_rule_id, batch, name, position, processing_started_at, parsing_completed_at, splitting_completed_at, indexing_completed_at, completed_at, stopped_at, enabled, disabled_at, status) VALUES (%(id)s::UUID, %(account_id)s::UUID, %(dataset_id)s::UUID, %(upload_file_id)s::UUID, %(process_rule_id)s::UUID, %(batch)s, %(name)s, %(position)s, %(processing_started_at)s, %(parsing_completed_at)s, %(splitting_completed_at)s, %(indexing_completed_at)s, %(completed_at)s, %(stopped_at)s, %(enabled)s, %(disabled_at)s, %(status)s) RETURNING document.character_count, document.token_count, document.error, document.updated_at, document.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3196s ago] {'id': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8'), 'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b'), 'upload_file_id': UUID('e69f8e76-eb94-4cc0-beb5-915b0a09ccbb'), 'process_rule_id': UUID('96344fba-cefc-4e77-a2a1-0f068097d4b2'), 'batch': 'batch-001', 'name': '产品说明书.md', 'position': 1, 'processing_started_at': None, 'parsing_completed_at': None, 'splitting_completed_at': None, 'indexing_completed_at': None, 'completed_at': None, 'stopped_at': None, 'enabled': True, 'disabled_at': None, 'status': <DocumentStatus.COMPLETED: 'completed'>}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.389s ago] {'pk_1': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3162s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.5202s ago] {'pk_1': '46db30d1-3199-4e79-a0cd-abf12fa6858f'}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(max(segment.position), %(coalesce_2)s) AS coalesce_1 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00072s] {'coalesce_2': 0, 'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - INSERT INTO segment (account_id, dataset_id, document_id, node_id, position, content, character_count, token_count, keywords, hash, enabled, disabled_at, processing_started_at, indexing_completed_at, completed_at, stopped_at, status) VALUES (%(account_id)s::UUID, %(dataset_id)s::UUID, %(document_id)s::UUID, %(node_id)s::UUID, %(position)s, %(content)s, %(character_count)s, %(token_count)s, %(keywords)s::JSONB, %(hash)s, %(enabled)s, %(disabled_at)s, %(processing_started_at)s, %(indexing_completed_at)s, %(completed_at)s, %(stopped_at)s, %(status)s) RETURNING segment.id, segment.hit_count, segment.error, segment.updated_at, segment.created_at
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00082s] {'account_id': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f'), 'dataset_id': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b'), 'document_id': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8'), 'node_id': UUID('6bc65142-116f-45ab-9dea-593ab5f9dff0'), 'position': 1, 'content': '新建片段内容', 'character_count': 6, 'token_count': 8, 'keywords': '["\\u81ea\\u52a8\\u5173\\u952e\\u8bcd"]', 'hash': '2ba97d0edc8c7d7faa7d0e5a89c3d7e67549122063970b9948b4d064dacbf050', 'enabled': True, 'disabled_at': None, 'processing_started_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 444739), 'indexing_completed_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 444743), 'completed_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 444743), 'stopped_at': None, 'status': <SegmentStatus.COMPLETED: 'completed'>}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3335s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3104s ago] {'pk_1': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(sum(segment.character_count), %(coalesce_2)s) AS coalesce_1, coalesce(sum(segment.token_count), %(coalesce_4)s) AS coalesce_3 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID 
+ LIMIT %(param_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00061s] {'coalesce_2': 0, 'coalesce_4': 0, 'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8'), 'param_1': 1}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE document SET character_count=%(character_count)s, token_count=%(token_count)s, updated_at=%(updated_at)s WHERE document.id = %(document_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00060s] {'character_count': 6, 'token_count': 8, 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 463680), 'document_id': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3491s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3258s ago] {'pk_1': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00082s] {'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.4345s ago] {'pk_1': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.5219s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID ORDER BY segment.position ASC 
+ LIMIT %(param_1)s OFFSET %(param_2)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00069s] {'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8'), 'param_1': 20, 'param_2': 0}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT count(*) AS count_1 
+FROM (SELECT segment.id AS id, segment.account_id AS account_id, segment.dataset_id AS dataset_id, segment.document_id AS document_id, segment.node_id AS node_id, segment.position AS position, segment.content AS content, segment.character_count AS character_count, segment.token_count AS token_count, segment.keywords AS keywords, segment.hash AS hash, segment.hit_count AS hit_count, segment.enabled AS enabled, segment.disabled_at AS disabled_at, segment.processing_started_at AS processing_started_at, segment.indexing_completed_at AS indexing_completed_at, segment.completed_at AS completed_at, segment.stopped_at AS stopped_at, segment.error AS error, segment.status AS status, segment.updated_at AS updated_at, segment.created_at AS created_at 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID) AS anon_1
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00062s] {'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE segment SET content=%(content)s, character_count=%(character_count)s, hash=%(hash)s, updated_at=%(updated_at)s WHERE segment.id = %(segment_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00090s] {'content': '更新后的片段内容', 'character_count': 8, 'hash': 'd78ab17aae0d931162dd0d74947b5cda71e536f4af05760bcdf81b71a14025d3', 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 509005), 'segment_id': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3699s ago] {'pk_1': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3975s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(sum(segment.character_count), %(coalesce_2)s) AS coalesce_1, coalesce(sum(segment.token_count), %(coalesce_4)s) AS coalesce_3 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID 
+ LIMIT %(param_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.05979s ago] {'coalesce_2': 0, 'coalesce_4': 0, 'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8'), 'param_1': 1}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE document SET character_count=%(character_count)s, updated_at=%(updated_at)s WHERE document.id = %(document_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00049s] {'character_count': 8, 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 519382), 'document_id': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3796s ago] {'pk_1': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.483s ago] {'pk_1': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.4099s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.5676s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE segment SET enabled=%(enabled)s, disabled_at=%(disabled_at)s, updated_at=%(updated_at)s WHERE segment.id = %(segment_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00061s] {'enabled': False, 'disabled_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 533106), 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 533990), 'segment_id': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.3969s ago] {'pk_1': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.4244s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT dataset.id AS dataset_id, dataset.account_id AS dataset_account_id, dataset.name AS dataset_name, dataset.icon AS dataset_icon, dataset.description AS dataset_description, dataset.updated_at AS dataset_updated_at, dataset.created_at AS dataset_created_at 
+FROM dataset 
+WHERE dataset.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.5023s ago] {'pk_1': UUID('34f10536-9a6b-4009-b5e1-62c9a472498b')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT account.id AS account_id, account.name AS account_name, account.email AS account_email, account.avatar AS account_avatar, account.password AS account_password, account.password_salt AS account_password_salt, account.assistant_agent_conversation_id AS account_assistant_agent_conversation_id, account.last_login_at AS account_last_login_at, account.last_login_ip AS account_last_login_ip, account.updated_at AS account_updated_at, account.created_at AS account_created_at 
+FROM account 
+WHERE account.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.5833s ago] {'pk_1': UUID('46db30d1-3199-4e79-a0cd-abf12fa6858f')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - DELETE FROM segment WHERE segment.id = %(id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00060s] {'id': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT document.id AS document_id, document.account_id AS document_account_id, document.dataset_id AS document_dataset_id, document.upload_file_id AS document_upload_file_id, document.process_rule_id AS document_process_rule_id, document.batch AS document_batch, document.name AS document_name, document.position AS document_position, document.character_count AS document_character_count, document.token_count AS document_token_count, document.processing_started_at AS document_processing_started_at, document.parsing_completed_at AS document_parsing_completed_at, document.splitting_completed_at AS document_splitting_completed_at, document.indexing_completed_at AS document_indexing_completed_at, document.completed_at AS document_completed_at, document.stopped_at AS document_stopped_at, document.error AS document_error, document.enabled AS document_enabled, document.disabled_at AS document_disabled_at, document.status AS document_status, document.updated_at AS document_updated_at, document.created_at AS document_created_at 
+FROM document 
+WHERE document.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.4365s ago] {'pk_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT coalesce(sum(segment.character_count), %(coalesce_2)s) AS coalesce_1, coalesce(sum(segment.token_count), %(coalesce_4)s) AS coalesce_3 
+FROM segment 
+WHERE segment.document_id = %(document_id_1)s::UUID 
+ LIMIT %(param_1)s
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.09894s ago] {'coalesce_2': 0, 'coalesce_4': 0, 'document_id_1': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8'), 'param_1': 1}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - UPDATE document SET character_count=%(character_count)s, token_count=%(token_count)s, updated_at=%(updated_at)s WHERE document.id = %(document_id)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [cached since 0.09599s ago] {'character_count': 0, 'token_count': 0, 'updated_at': datetime.datetime(2026, 4, 19, 17, 27, 49, 559004), 'document_id': UUID('caf3af5e-46ad-42ac-9c1f-a32a3ede9fc8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - SELECT segment.id AS segment_id, segment.account_id AS segment_account_id, segment.dataset_id AS segment_dataset_id, segment.document_id AS segment_document_id, segment.node_id AS segment_node_id, segment.position AS segment_position, segment.content AS segment_content, segment.character_count AS segment_character_count, segment.token_count AS segment_token_count, segment.keywords AS segment_keywords, segment.hash AS segment_hash, segment.hit_count AS segment_hit_count, segment.enabled AS segment_enabled, segment.disabled_at AS segment_disabled_at, segment.processing_started_at AS segment_processing_started_at, segment.indexing_completed_at AS segment_indexing_completed_at, segment.completed_at AS segment_completed_at, segment.stopped_at AS segment_stopped_at, segment.error AS segment_error, segment.status AS segment_status, segment.updated_at AS segment_updated_at, segment.created_at AS segment_created_at 
+FROM segment 
+WHERE segment.id = %(pk_1)s::UUID
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - [generated in 0.00070s] {'pk_1': UUID('bbd700bc-0f35-4cee-a328-023ff0793ab8')}
+2026-04-19 17:27:49 [    INFO] sqlalchemy.engine.Engine - ROLLBACK

@@ -1,0 +1,92 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "start ui",
+      "cwd": "${workspaceFolder}/ui",
+      "command": "yarn dev",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "name": "start api",
+      "type": "debugpy",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/api",
+      "module": "app.http.app",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api:$PYTHONPATH"
+      }
+    },
+
+    {
+      "name": "Python: 测试知识库模块",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "cwd": "${workspaceFolder}/api",
+      "args": [
+        "test/internal/handler/test_dataset_handler.py",
+        "-v",
+        "-s"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api"
+      }
+    },
+    {
+      "name": "Python: 测试知识库模块单个用例",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "cwd": "${workspaceFolder}/api",
+      "args": [
+        "test/internal/handler/test_dataset_handler.py",
+        "-k",
+        "test_dataset_crud",
+        "-v",
+        "-s"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api"
+      }
+    },
+    {
+      "name": "Python: 运行全部 Handler 测试",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "cwd": "${workspaceFolder}/api",
+      "args": [
+        "test/internal/handler",
+        "-v",
+        "-s"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api"
+      }
+    },
+    {
+      "name": "Python: 调试当前文件",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/api"
+      }
+    }
+  ]
+}
+
+

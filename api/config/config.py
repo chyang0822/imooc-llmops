@@ -16,6 +16,16 @@ def _get_env(key: str) -> Any:
     return os.getenv(key, DEFAULT_CONFIG.get(key))
 
 
+def _get_optional_env(key: str) -> Any:
+    """从环境变量中获取可选配置项，空字符串会被视为未配置"""
+    value = _get_env(key)
+    if isinstance(value, str):
+        value = value.strip()
+        if value == "":
+            return None
+    return value
+
+
 def _get_bool_env(key: str) -> bool:
     """从环境变量中获取布尔值型的配置项，如果找不到则返回默认值"""
     value: str = _get_env(key)
@@ -40,7 +50,7 @@ class Config:
         self.WEAVIATE_HTTP_PORT = _get_env("WEAVIATE_HTTP_PORT")
         self.WEAVIATE_GRPC_HOST = _get_env("WEAVIATE_GRPC_HOST")
         self.WEAVIATE_GRPC_PORT = _get_env("WEAVIATE_GRPC_PORT")
-        self.WEAVIATE_API_KEY = _get_env("WEAVIATE_API_KEY")
+        self.WEAVIATE_API_KEY = _get_optional_env("WEAVIATE_API_KEY")
 
         # Redis配置
         self.REDIS_HOST = _get_env("REDIS_HOST")
